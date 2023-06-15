@@ -4,6 +4,13 @@
 
 - https://github.com/krud-dev/ostara
 
+## 项目结构
+
+```
+
+
+```
+
 ## 依赖安装
 
 ### Electron
