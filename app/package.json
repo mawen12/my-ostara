@@ -23,7 +23,9 @@
   "main": "./src/main/main.ts",
   "scripts": {
     "start": "npm run build && electron ./dist/electron.js",
-    "build": "webpack --config ./webpack.config.js"
+    "start:main": "npm run build:main && electron ./dist/main.js",
+    "build": "webpack --config ./webpack.config.js",
+    "build:main": "webpack --config ./webpack.config.main.js"
   },
   "devDependencies": {
     "@types/react": "^18.2.12",
