@@ -46,3 +46,10 @@ pnpm install --save-dev webpack webpack-cli webpack-dev-server webpack-merge web
 ```shell
 brew install pnpm
 ```
+
+### cnpm 推荐
+
+```shell
+npm install -g cnpm --registry=https://registry.npmmirror.com
+cnpm install
+```
