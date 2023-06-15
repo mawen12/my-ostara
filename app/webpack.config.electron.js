@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = [
     {
       mode: 'development',
-      entry: './src/main/electron.ts',
+      entry: './src/electron/electron.ts',
       target: 'electron-main',
       module: {
         rules: [{
@@ -13,13 +13,13 @@ module.exports = [
         }]
       },
       output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/dist/electron',
         filename: 'electron.js'
       }
     },
     {
       mode: 'development',
-      entry: './src/main/react.tsx',
+      entry: './src/electron/react.tsx',
       target: 'electron-renderer',
       devtool: 'source-map',
       module: { rules: [{
@@ -28,12 +28,12 @@ module.exports = [
         use: [{ loader: 'ts-loader' }]
       }] },
       output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/dist/electron',
         filename: 'react.js'
       },
       plugins: [
         new HtmlWebpackPlugin({
-          template: './src/main/index.html'
+          template: './src/electron/index.html'
         })
       ]
     }

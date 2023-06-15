@@ -22,9 +22,9 @@
   "homepage": "https://github.com/mawen12/my-ostara",
   "main": "./src/main/main.ts",
   "scripts": {
-    "start": "npm run build && electron ./dist/electron.js",
-    "start:main": "npm run build:main && electron ./dist/main.js",
-    "build": "webpack --config ./webpack.config.js",
+    "start:electron": "npm run build:electron && electron ./dist/electron/electron.js",
+    "start:main": "npm run build:main && electron ./dist/main/main.js",
+    "build:electron": "webpack --config ./webpack.config.electron.js",
     "build:main": "webpack --config ./webpack.config.main.js"
   },
   "devDependencies": {
@@ -43,6 +43,7 @@
     "webpack-merge": "^5.9.0"
   },
   "dependencies": {
+    "electron-context-menu": "^3.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

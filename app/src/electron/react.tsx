@@ -5,4 +5,4 @@ const Index = () => {
     return <div>Hello React!</div>
 }
 
-ReactDOM.render(<Index/>, document.getElementById('root'))
+ReactDOM.render(<Index/>, document.getElementById('app'))

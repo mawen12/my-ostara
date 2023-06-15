@@ -3,7 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = [
     {
       mode: 'development',
-      entry: './src/main/main.ts',
+      entry: {
+        main: './src/main/main.ts',
+        preload: './src/main/preload.js'
+      },
       target: 'electron-main',
       module: {
         rules: [{
@@ -13,9 +16,9 @@ module.exports = [
         }]
       },
       output: {
-        path: __dirname + '/dist',
-        filename: 'main.js'
-      }
+        path: __dirname + '/dist/main',
+        filename: '[name].js'
+      },
     },
     {
       mode: 'development',
@@ -28,7 +31,7 @@ module.exports = [
         use: [{ loader: 'ts-loader' }]
       }] },
       output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/dist/main',
         filename: 'react.js'
       },
       plugins: [
@@ -36,5 +39,5 @@ module.exports = [
           template: './src/main/index.html'
         })
       ]
-    }
+    },
   ];

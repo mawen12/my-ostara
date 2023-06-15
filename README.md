@@ -10,6 +10,7 @@
 
 ```shell
 pnpm add --save-dev electron
+pnpm add electron-context-menu
 ```
 
 ### TypeScript

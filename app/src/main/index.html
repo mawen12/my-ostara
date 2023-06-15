@@ -1,13 +1,14 @@
-<!-- // src/index.html -->
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Hello Electron!</title>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline' https://sentry.io/ https://*.sentry.io/"
+    />
+    <title>Ostara</title>
   </head>
   <body>
-    <div id="app">
-      <h1>Hello World!</h1>
-    </div>
+    <div id="root"></div>
   </body>
 </html>
