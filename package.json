@@ -1,0 +1,23 @@
+{
+  "name": "@mawen/my-ostara",
+  "version": "0.1.0",
+  "description": "A visual tool to monitor and interact with Spring Boot Applications via Actuactor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mawen12/my-ostara.git"
+  },
+  "author": {
+    "name": "mawen12",
+    "email": "1181963012mw@gmail.com"
+  },
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "spring boot",
+    "actuator",
+    "monitor",
+    "electron",
+    "ostara"
+  ],
+  "homepage": "https://github.com/mawen12/my-ostara"
+}
