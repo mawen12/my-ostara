@@ -5,6 +5,8 @@ import {
   BrowserWindow,
   MenuItemConstructorOptions,
 } from 'electron';
+import { isMac } from 'infra/utils/platform';
+import { MAX_ZOOM_FACTOR } from './consts';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
@@ -26,10 +28,9 @@ export default class MenuBuilder {
       this.setupDevelopmentEnvironment();
     }
 
-    const template =
-      process.platform === 'darwin'
-        ? this.buildDarwinTemplate()
-        : this.buildDefaultTemplate();
+    const template = isMac
+      ? this.buildDarwinTemplate()
+      : this.buildDefaultTemplate();
 
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
@@ -54,17 +55,25 @@ export default class MenuBuilder {
 
   buildDarwinTemplate(): MenuItemConstructorOptions[] {
     const subMenuAbout: DarwinMenuItemConstructorOptions = {
-      label: 'Electron',
+      label: 'Ostara',
+      // About
       submenu: [
         {
-          label: 'About ElectronReact',
+          label: 'About Ostara',
           selector: 'orderFrontStandardAboutPanel:',
         },
         { type: 'separator' },
         { label: 'Services', submenu: [] },
         { type: 'separator' },
         {
-          label: 'Hide ElectronReact',
+          label: 'Settings',
+          click: () => {
+            this.mainWindow.webContents.send('trigger:openSettings');
+          },
+        },
+        { type: 'separator' },
+        {
+          label: 'Hide Ostara',
           accelerator: 'Command+H',
           selector: 'hide:',
         },
@@ -84,6 +93,7 @@ export default class MenuBuilder {
         },
       ],
     };
+    // Edit
     const subMenuEdit: DarwinMenuItemConstructorOptions = {
       label: 'Edit',
       submenu: [
@@ -100,23 +110,77 @@ export default class MenuBuilder {
         },
       ],
     };
+    // reload options
+    const reloadOptions: MenuItemConstructorOptions[] = [
+      {
+        label: 'Reload',
+        accelerator: 'Command+R',
+        click: () => {
+          this.mainWindow.webContents.getZoomLevel();
+        },
+      },
+      {
+        label: 'Force Reload',
+        accelerator: 'Shift+Command+R',
+        click: () => {
+          this.mainWindow.webContents.reloadIgnoringCache();
+        },
+      },
+    ];
+    // full screen options
+    const fullScreenOptions: MenuItemConstructorOptions = {
+      label: 'Toggle Full Screen',
+      accelerator: 'Ctrl+Command+F',
+      click: () => {
+        this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
+      },
+    };
+    // zoom options
+    const zoomOptions: MenuItemConstructorOptions[] = [
+      {
+        label: 'Zoom In',
+        accelerator: 'Command+Plus',
+        click: () => {
+          this.mainWindow.webContents.setZoomFactor(
+            Math.min(
+              MAX_ZOOM_FACTOR,
+              this.mainWindow.webContents.getZoomFactor() + 0.1
+            )
+          );
+          console.log(this.mainWindow.webContents.getZoomFactor());
+        },
+      },
+      {
+        label: 'Zoom Out',
+        accelerator: 'Command+-',
+        click: () => {
+          this.mainWindow.webContents.setZoomFactor(
+            Math.min(
+              MAX_ZOOM_FACTOR,
+              this.mainWindow.webContents.getZoomFactor() + 0.1
+            )
+          );
+          console.log(this.mainWindow.webContents.getZoomFactor());
+        },
+      },
+      {
+        label: 'Reset Zoom',
+        accelerator: 'Command+0',
+        click: () => {
+          this.mainWindow.webContents.setZoomFactor(1);
+        },
+      },
+    ];
+
+    // View
     const subMenuViewDev: MenuItemConstructorOptions = {
       label: 'View',
       submenu: [
-        {
-          label: 'Reload',
-          accelerator: 'Command+R',
-          click: () => {
-            this.mainWindow.webContents.reload();
-          },
-        },
-        {
-          label: 'Toggle Full Screen',
-          accelerator: 'Ctrl+Command+F',
-          click: () => {
-            this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
-          },
-        },
+        ...reloadOptions,
+        { type: 'separator' },
+        fullScreenOptions,
+        { type: 'separator' },
+        ...zoomOptions,
         {
           label: 'Toggle Developer Tools',
           accelerator: 'Alt+Command+I',
@@ -126,18 +190,19 @@ export default class MenuBuilder {
         },
       ],
     };
+    // View Prod
     const subMenuViewProd: MenuItemConstructorOptions = {
       label: 'View',
       submenu: [
-        {
-          label: 'Toggle Full Screen',
-          accelerator: 'Ctrl+Command+F',
-          click: () => {
-            this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
-          },
-        },
+        ...reloadOptions,
+        { type: 'separator' },
+        fullScreenOptions,
+        { type: 'separator' },
+        ...zoomOptions,
       ],
     };
+
+    // Window
     const subMenuWindow: DarwinMenuItemConstructorOptions = {
       label: 'Window',
       submenu: [
@@ -151,33 +216,14 @@ export default class MenuBuilder {
         { label: 'Bring All to Front', selector: 'arrangeInFront:' },
       ],
     };
+    // Help
     const subMenuHelp: MenuItemConstructorOptions = {
       label: 'Help',
       submenu: [
         {
           label: 'Learn More',
           click() {
-            shell.openExternal('https://electronjs.org');
-          },
-        },
-        {
-          label: 'Documentation',
-          click() {
-            shell.openExternal(
-              'https://github.com/electron/electron/tree/main/docs#readme'
-            );
-          },
-        },
-        {
-          label: 'Community Discussions',
-          click() {
-            shell.openExternal('https://www.electronjs.org/community');
-          },
-        },
-        {
-          label: 'Search Issues',
-          click() {
-            shell.openExternal('https://github.com/electron/electron/issues');
+            shell.openExternal('https://github.com/mawen12/my-ostara');
           },
         },
       ],
