@@ -21,10 +21,10 @@ node_modules
 # 发布的app生成目录、构建目录
 release/app/dist
 release/build
-.erb/dll
+app/.erb/dll
 dist
 
-# IDEA 
+# IDEA
 .idea
 npm-debug.log.*
 *.css.d.ts

@@ -11,8 +11,6 @@
 import path from 'path';
 import { app, BrowserWindow } from 'electron';
 import contextMenu from 'electron-context-menu';
-import '../infra';
-import { isMac, isWindows } from '../infra/utils/platform';
 import { resolveHtmlPath } from './util';
 import MenuBuilder from './menu';
 
@@ -33,6 +31,9 @@ const createMainWindow = () => {
     showLookUpSelection: false,
     showLearnSpelling: false,
   });
+
+  const isMac = process.platform === 'darwin';
+  const isWindows = process.platform === 'win32';
 
   const RESOURCE_PATH = path.join(process.resourcesPath, 'assets');
   const getAssetPath = (...paths: string[]): string => {

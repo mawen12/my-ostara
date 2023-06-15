@@ -5,13 +5,14 @@ import {
   BrowserWindow,
   MenuItemConstructorOptions,
 } from 'electron';
-import { isMac } from 'infra/utils/platform';
 import { MAX_ZOOM_FACTOR } from './consts';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
   submenu?: DarwinMenuItemConstructorOptions[] | Menu;
 }
+
+const isMac = process.platform === 'darwin';
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
