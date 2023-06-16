@@ -1,3 +1,4 @@
+import { NavigatorTreeProvider } from '../../contexts/NavigatorTreeContext';
 
 type NavigatorLayoutProps = {};
 

@@ -28,6 +28,29 @@ export const urls = asUrlInfo({
     url: '/navigator/dashboard',
     path: 'dashboard',
   },
+  // Folder Root
+  folder: {
+    url: '/navigator/folder/:id',
+    path: 'folder/:id',
+    redirect: true,
+  },
+  folderApplications: {
+    url: '/navigator/folder/:id/applications',
+    path: 'applications',
+    helpUrl: 'https://docs.ostara.dev/documentation/folders',
+  },
+  // Application Root
+  application: {
+    url: '/navigator/application/:id',
+    path: 'application/:id',
+    redirect: true,
+  },
+  // Instance Root
+  instance: {
+    url: '/navigator/instance/:id',
+    path: 'instance/:id',
+    redirect: true,
+  },
   // Settings Root
   settings: {
     url: '/settings',

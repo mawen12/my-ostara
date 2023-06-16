@@ -9,6 +9,8 @@ export interface FolderRO {
   parentFolderId?: string;
 }
 
+export type ApplicationType = 'SPRING_BOOT';
+
 export interface ApplicationRO {
   id: string;
   alias: string;
@@ -19,6 +21,7 @@ export interface ApplicationRO {
   icon?: string;
   sort?: number;
   parentFolderId?: string;
+  demo: boolean;
 }
 
 export interface InstanceRO {
@@ -33,5 +36,3 @@ export interface InstanceRO {
   sort?: number;
   demo: boolean;
 }
-
-export type ApplicationType = 'SPRING_BOOT';
