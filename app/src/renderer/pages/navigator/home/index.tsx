@@ -5,7 +5,7 @@ import Grid2 from '@mui/material/Unstable_Grid2';
 import { COMPONENTS_SPACING } from '../../../constants/ui';
 import HomeWelcome from './components/HelloWelcome';
 
-function Home() {
+const Home: FunctionComponent = () => {
   return (
     <Page sx={{ height: '100%', display: 'flex', p: 0 }}>
       <Container

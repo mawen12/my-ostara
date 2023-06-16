@@ -8,6 +8,7 @@ import {
 import { generatePath } from 'react-router-dom';
 import { urls } from '../routes/urls';
 import { ReactNode } from 'react';
+import { MUIconType } from '../components/common/IconViewer';
 
 export function isApplication(item: ItemRO): item is ApplicationRO {
   return 'type' in item;
@@ -66,7 +67,7 @@ export const getItemParentId = (item: ItemRO): string | undefined => {
   throw new Error(`Unknown item type`);
 };
 
-export const getItemTypeIcon = (itemType: ItemType): string => {
+export const getItemTypeIcon = (itemType: ItemType): MUIconType => {
   switch (itemType) {
     case 'folder':
       return 'FolderOutlined';

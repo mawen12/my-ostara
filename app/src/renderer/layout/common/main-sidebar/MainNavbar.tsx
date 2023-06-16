@@ -24,7 +24,7 @@ export default function MainNavbar({}: MainNavbarProps) {
     navigate(1);
   }, [navigate]);
 
-  const isMac = process.platform === 'darwin';
+  // const isMac = process.platform === 'darwin';
 
   return (
     <AppBar
@@ -41,7 +41,7 @@ export default function MainNavbar({}: MainNavbarProps) {
         sx={{
           flexGrow: 1,
           pl: COMPONENTS_SPACING,
-          pr: !isMac ? '0' : COMPONENTS_SPACING
+          pr: COMPONENTS_SPACING,
         }}
       >
         <Box
